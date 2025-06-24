@@ -19,9 +19,9 @@ struct TakeSnapshotOptions {
     }
     // Custom Path
     if let customPath = dictionary["path"] as? String {
-      path = try FileUtils.getFilePath(customDirectory: customPath, fileExtension: "jpg")
+      path = try FileUtils.getFilePath(customDirectory: customPath, fileExtension: "png")
     } else {
-      path = try FileUtils.getFilePath(fileExtension: "jpg")
+      path = try FileUtils.getFilePath(fileExtension: "png")
     }
   }
 }
