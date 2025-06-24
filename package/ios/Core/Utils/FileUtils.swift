@@ -31,14 +31,25 @@ enum FileUtils {
   }
 
   static func writePhotoToFile(photo: AVCapturePhoto, metadataProvider: MetadataProvider, file: URL) throws {
-    guard let data = photo.fileDataRepresentation(with: metadataProvider) else {
+    // Get CGImage representation
+    guard let cgImage = photo.cgImageRepresentation() else {
       throw CameraError.capture(.imageDataAccessError)
     }
+    
+    // Convert CGImage to UIImage
+    let uiImage = UIImage(cgImage: cgImage)
+    
+    // Get PNG data
+    guard let data = uiImage.pngData() else {
+      throw CameraError.capture(.imageDataAccessError)
+    }
+    
     try writeDataToFile(data: data, file: file)
   }
 
   static func writeUIImageToFile(image: UIImage, file: URL, compressionQuality: CGFloat = 1.0) throws {
-    guard let data = image.jpegData(compressionQuality: compressionQuality) else {
+    // Use PNG format instead of JPEG
+    guard let data = image.pngData() else {
       throw CameraError.capture(.imageDataAccessError)
     }
     try writeDataToFile(data: data, file: file)
