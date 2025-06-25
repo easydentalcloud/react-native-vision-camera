@@ -36,8 +36,15 @@ enum FileUtils {
       throw CameraError.capture(.imageDataAccessError)
     }
     
-    // Convert CGImage to UIImage
-    let uiImage = UIImage(cgImage: cgImage)
+    // Get orientation from metadata
+    let exifOrientation = photo.metadata[String(kCGImagePropertyOrientation)] as? UInt32 ?? CGImagePropertyOrientation.up.rawValue
+    let cgOrientation = CGImagePropertyOrientation(rawValue: exifOrientation) ?? CGImagePropertyOrientation.up
+    
+    // Convert CGImagePropertyOrientation to UIImage.Orientation
+    let uiOrientation = convertToUIImageOrientation(cgOrientation)
+    
+    // Create UIImage with correct orientation
+    let uiImage = UIImage(cgImage: cgImage, scale: 1.0, orientation: uiOrientation)
     
     // Get PNG data
     guard let data = uiImage.pngData() else {
@@ -45,6 +52,27 @@ enum FileUtils {
     }
     
     try writeDataToFile(data: data, file: file)
+  }
+
+  private static func convertToUIImageOrientation(_ cgOrientation: CGImagePropertyOrientation) -> UIImage.Orientation {
+    switch cgOrientation {
+    case .up:
+      return .up
+    case .upMirrored:
+      return .upMirrored
+    case .down:
+      return .down
+    case .downMirrored:
+      return .downMirrored
+    case .left:
+      return .left
+    case .leftMirrored:
+      return .leftMirrored
+    case .right:
+      return .right
+    case .rightMirrored:
+      return .rightMirrored
+    }
   }
 
   static func writeUIImageToFile(image: UIImage, file: URL, compressionQuality: CGFloat = 1.0) throws {
