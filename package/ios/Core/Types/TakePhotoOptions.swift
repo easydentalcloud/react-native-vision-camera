@@ -14,6 +14,7 @@ struct TakePhotoOptions {
   var enableAutoRedEyeReduction = false
   var enableAutoDistortionCorrection = false
   var enableShutterSound = true
+  var format: String = "jpeg"
 
   init(fromJSValue dictionary: NSDictionary) throws {
     // Flash
@@ -32,11 +33,16 @@ struct TakePhotoOptions {
     if let enable = dictionary["enableShutterSound"] as? Bool {
       enableShutterSound = enable
     }
+    // Format
+    if let formatOption = dictionary["format"] as? String {
+      format = formatOption
+    }
     // Custom Path
+    let fileExtension = format == "png" ? "png" : "jpg"
     if let customPath = dictionary["path"] as? String {
-      path = try FileUtils.getFilePath(customDirectory: customPath, fileExtension: "png")
+      path = try FileUtils.getFilePath(customDirectory: customPath, fileExtension: fileExtension)
     } else {
-      path = try FileUtils.getFilePath(fileExtension: "png")
+      path = try FileUtils.getFilePath(fileExtension: fileExtension)
     }
   }
 }

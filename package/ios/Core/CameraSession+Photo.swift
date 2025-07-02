@@ -84,6 +84,7 @@ extension CameraSession {
                                                       enableShutterSound: options.enableShutterSound,
                                                       metadataProvider: self.metadataProvider,
                                                       path: options.path,
+                                                      format: options.format,
                                                       cameraSessionDelegate: self.delegate)
       photoOutput.capturePhoto(with: photoSettings, delegate: photoCaptureDelegate)
 

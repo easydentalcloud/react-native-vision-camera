@@ -38,6 +38,12 @@ export interface TakePhotoOptions {
    * @default true
    */
   enableShutterSound?: boolean
+  /**
+   * The format to use for the photo file.
+   *
+   * @default "jpeg"
+   */
+  format?: 'jpeg' | 'png'
 }
 
 /**
