@@ -62,6 +62,7 @@ const _CaptureButton: React.FC<Props> = ({
       const photo = await camera.current.takePhoto({
         flash: flash,
         enableShutterSound: false,
+        format: 'jpeg',
       })
       onMediaCaptured(photo, 'photo')
     } catch (e) {
