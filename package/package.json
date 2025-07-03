@@ -1,7 +1,7 @@
 {
-  "name": "react-native-vision-camera",
-  "version": "4.7.2",
-  "description": "A powerful, high-performance React Native Camera library.",
+  "name": "@easy/react-vision-camera",
+  "version": "1.0.0",
+  "description": "fork of react-native-vision-camera for easy",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -47,42 +47,19 @@
     "prepack": "cp ../README.md ./README.md",
     "postpack": "rm ./README.md"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/easydentalcloud/react-native-vision-camera.git"
+  },
   "keywords": [
-    "react",
-    "native",
-    "camera",
-    "react-native",
-    "react-native-camera",
-    "vision",
-    "javascript",
-    "typescript",
-    "android",
-    "ios",
-    "library",
-    "instagram",
-    "snapchat",
-    "ai",
-    "scanner",
-    "qrcode",
-    "barcode",
-    "qr-code",
-    "jsi",
-    "worklet",
-    "module",
-    "frame",
-    "processing",
-    "realtime"
+    "easy"
   ],
-  "repository": "https://github.com/mrousavy/react-native-vision-camera",
-  "author": "Marc Rousavy <me@mrousavy.com> (https://github.com/mrousavy)",
-  "license": "MIT",
+  "author": "easy",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mrousavy/react-native-vision-camera/issues"
+    "url": "https://github.com/easydentalcloud/react-native-vision-camera/issues"
   },
-  "homepage": "https://react-native-vision-camera.com/",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
+  "homepage": "https://github.com/easydentalcloud/react-native-vision-camera#readme",
   "devDependencies": {
     "@expo/config-plugins": "^8.0.5",
     "@jamesacarr/eslint-formatter-github-actions": "^0.2.0",
@@ -120,47 +97,6 @@
     },
     "@shopify/react-native-skia": {
       "optional": true
-    }
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": {
-          "name": "conventionalcommits",
-          "types": [
-            {
-              "type": "feat",
-              "section": "✨ Features"
-            },
-            {
-              "type": "perf",
-              "section": "💨 Performance Improvements"
-            },
-            {
-              "type": "fix",
-              "section": "🐛 Bug Fixes"
-            },
-            {
-              "type": "chore(deps)",
-              "section": "🛠️ Dependency Upgrades"
-            },
-            {
-              "type": "docs",
-              "section": "📚 Documentation"
-            }
-          ]
-        }
-      }
     }
   },
   "react-native-builder-bob": {
